@@ -1,0 +1,14 @@
+import pokemons.Lapras;
+import ru.ifmo.se.pokemon.Battle;
+import ru.ifmo.se.pokemon.Pokemon;
+
+public class Main {
+    public static void main(String[] args) {
+        Battle b = new Battle();
+        Pokemon p1 = new Lapras("Чужой", 1);
+        Pokemon p2 = new Lapras("Хищник", 1);
+        b.addAlly(p1);
+        b.addFoe(p2);
+        b.go();
+    }
+}
