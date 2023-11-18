@@ -7,16 +7,22 @@ public class DreamEater extends SpecialMove {
         super(Type.PSYCHIC, 100, 100);
     }
 
+    private boolean isEnemyAsleep = false;
+
     @Override
     protected void applyOppDamage(Pokemon targetPokemon, double damage){
         if (targetPokemon.getCondition() == Status.SLEEP){
             targetPokemon.setMod(Stat.HP, (int) Math.round(damage));
+            isEnemyAsleep = true;
         }
+        else { isEnemyAsleep = false; }
     }
 
     @Override
     protected void applySelfDamage(Pokemon targetPokemon, double damage){
-        targetPokemon.setMod(Stat.HP, (int) -(Math.round(damage * 0.5)));
+        if (isEnemyAsleep){
+            targetPokemon.setMod(Stat.HP, (int) -(Math.round(damage * 0.5)));
+        }
     }
 
     @Override
